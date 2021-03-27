@@ -3,15 +3,8 @@
     "id": 1,
     "nome": "Eduardo",
     "sobrenome": "Sayans",
-    "telefone": "1234",
-    "ra": 1111
-  },
-  {
-    "id": 2,
-    "nome": "Maria",
-    "sobrenome": "Jesus",
-    "telefone": "1234",
-    "ra": 1111
+    "telefone": "8989",
+    "ra": 1108
   },
   {
     "id": 3,
@@ -19,5 +12,12 @@
     "sobrenome": "Silva",
     "telefone": "56789",
     "ra": 65
+  },
+  {
+    "id": 0,
+    "nome": "Sabrina",
+    "sobrenome": "Lucio",
+    "telefone": "741852",
+    "ra": 5
   }
 ]
