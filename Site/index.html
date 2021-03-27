@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Cadastro Aluno</title>
+</head>
+
+<body>
+    <h2>Cadastro Aluno</h2>
+    </br>
+    <div><label>Nome:</label><input id="nome" type="text"></div>
+    <div><label>Sobrenome:</label><input id="sobrenome" type="text"></div>
+    <div><label>Telefone:</label><input id="telefone" type="text"></div>
+    <div><label>RA:</label><input id="ra" type="text"></div>
+    </br>
+    <div>
+        <button onClick="Cadastrar()">Cadastrar</button>
+        <button>Limpar</button>
+    </div>
+    </br>
+    <table border="1">
+        <thead>
+            <tr>
+                <td>Nome</td>
+                <td>Sobrenome</td>
+                <td>Telefone</td>
+                <td>RA</td>
+                <td>Opções</td>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+        </tbody>
+    </table>
+    <script type="text/javascript">
+        function Cadastrar() {
+            var _nome = document.getElementById('nome').value;
+            var _sobrenome = document.getElementById('sobrenome').value;
+            var _telefone = document.getElementById('telefone').value;
+            var _ra = document.getElementById('ra').value;
+
+            var aluno = {
+                nome: _nome,
+                sobrenome: _sobrenome,
+                telefone: _telefone,
+                ra: _ra
+            }
+            /*
+            //console.log(aluno)
+            var xhr = new XMLHttpRequest();
+            // configuração antes de enviar send
+            xhr.open('GET', 'https://localhost:44312/api/aluno', true);
+            // quando estiver pronto me retorna um texto
+            xhr.onload = function () {
+                console.log(this.responseText);
+            }
+            xhr.send();
+            */
+        }
+
+        function carregaEstudantes() {
+            var xhr = new XMLHttpRequest();
+            xhr.open('GET', 'https://localhost:44312/api/aluno', true);
+            xhr.onload = function () {
+                var estudantes = JSON.parse(this.responseText); // estudantes é um arquivo json
+                for (var indice in estudantes) {
+                    adicionaLinha(estudantes[indice]);
+                }
+            }
+            xhr.send();
+        }
+
+        carregaEstudantes();
+
+        function editarEstudantes(id) {
+            console.log(id)
+        }
+
+        function adicionaLinha(estudantes) {
+            var tbody = document.querySelector('table tbody');
+            var trow = `
+                <tr>
+                    <td>${estudantes.nome}</td>
+                    <td>${estudantes.sobrenome}</td>
+                    <td>${estudantes.telefone}</td>
+                    <td>${estudantes.ra}</td>
+                    <td><button onclick='editarEstudantes(${estudantes.id})'>Editar</button></td>
+                </tr>
+                `
+            //console.log(trow);
+            tbody.innerHTML += trow;
+        }
+    </script>
+</body>
+
+</html>
