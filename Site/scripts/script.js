@@ -7,18 +7,6 @@ function Cadastrar() {
     aluno.telefone = document.querySelector('#telefone').value;
     aluno.ra = document.querySelector('#ra').value;
 
-    /*
-    //console.log(aluno)
-    var xhr = new XMLHttpRequest();
-    // configuração antes de enviar send
-    xhr.open('GET', 'https://localhost:44312/api/aluno', true);
-    // quando estiver pronto me retorna um texto
-    xhr.onload = function () {
-        console.log(this.responseText);
-    }
-    xhr.send();
-    */
-
     console.log(aluno)
 
     if (aluno.id === undefined || aluno.id === 0) {
@@ -28,12 +16,13 @@ function Cadastrar() {
         salvarEstudantes('PUT', aluno.id, aluno);
     }
     carregaEstudantes();
+
+    $('#myModal').modal('hide');
 }
 
-function Cancelar() {
+function novoAluno() {
     var btnSalvar = document.querySelector('#btnSalvar');
-    var btnCancelar = document.querySelector('#btnCancelar')
-    var titulo = document.querySelector('#titulo')
+    var tituloModal = document.querySelector('#tituloModal')
 
     document.querySelector('#nome').value = '';
     document.querySelector('#sobrenome').value = '';
@@ -43,9 +32,28 @@ function Cancelar() {
     aluno = {}
 
     btnSalvar.textContent = 'Cadastrar';
-    btnCancelar.textContent = 'Limpar';
 
-    titulo.textContent = 'Cadastrar Aluno'
+    tituloModal.textContent = 'Cadastrar Aluno'
+
+    $('#myModal').modal('show');
+}
+
+function Cancelar() {
+    var btnSalvar = document.querySelector('#btnSalvar');
+    var tituloModal = document.querySelector('#tituloModal')
+
+    document.querySelector('#nome').value = '';
+    document.querySelector('#sobrenome').value = '';
+    document.querySelector('#telefone').value = '';
+    document.querySelector('#ra').value = '';
+
+    aluno = {}
+
+    btnSalvar.textContent = 'Cadastrar';
+
+    tituloModal.textContent = 'Cadastrar Aluno'
+
+    $('#myModal').modal('hide');
 }
 
 function carregaEstudantes() {
@@ -80,8 +88,7 @@ carregaEstudantes();
 
 function editarEstudantes(estudante) {
     var btnSalvar = document.querySelector('#btnSalvar');
-    var btnCancelar = document.querySelector('#btnCancelar')
-    var titulo = document.querySelector('#titulo')
+    var tituloModal = document.querySelector('#tituloModal')
 
     document.querySelector('#nome').value = estudante.nome;
     estudante.sobrenome = document.querySelector('#sobrenome').value = estudante.sobrenome;
@@ -89,9 +96,8 @@ function editarEstudantes(estudante) {
     estudante.ra = document.querySelector('#ra').value = estudante.ra;
 
     btnSalvar.textContent = 'Salvar';
-    btnCancelar.textContent = 'Cancelar';
 
-    titulo.textContent = `Editar Aluno ${estudante.nome}`;
+    tituloModal.textContent = `Editar Aluno ${estudante.nome}`;
 
     aluno = estudante;
 
@@ -105,9 +111,27 @@ function deletarEstudantes(id) {
     xhr.send();
 }
 
-function deletar(id) {
-    deletarEstudantes(id);
-    carregaEstudantes();
+function deletar(estudante) {
+
+    bootbox.confirm({
+        message: `Tem certeza que deseja excluir o estudante ${estudante.nome}`,
+        buttons: {
+            confirm: {
+                label: 'SIM',
+                className: 'btn-success'
+            },
+            cancel: {
+                label: 'NÃO',
+                className: 'btn-danger'
+            }
+        },
+        callback: function (result) {
+            if(result) {
+                deletarEstudantes(estudante.id);
+                carregaEstudantes();
+            }
+        }
+    });
 }
 
 function adicionaLinha(estudantes) {
@@ -119,8 +143,8 @@ function adicionaLinha(estudantes) {
                     <td>${estudantes.telefone}</td>
                     <td>${estudantes.ra}</td>
                     <td>
-                        <button onclick='editarEstudantes(${JSON.stringify(estudantes)})'>Editar</button>
-                        <button onclick='deletar(${estudantes.id})'>Deletar</button>
+                        <button class="btn btn-info" data-toggle="modal" data-target="#myModal" onclick='editarEstudantes(${JSON.stringify(estudantes)})'>Editar</button>
+                        <button class="btn btn-danger" onclick='deletar(${JSON.stringify(estudantes)})'>Deletar</button>
                     </td>
                 </tr>
                 `
