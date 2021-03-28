@@ -62,13 +62,27 @@ function carregaEstudantes() {
 
     xhr.open(`GET`, `https://localhost:44312/api/aluno`, true);
 
-    xhr.onload = function () {
-        var estudantes = JSON.parse(this.responseText); // estudantes é um arquivo json
-        for (var indice in estudantes) {
-            adicionaLinha(estudantes[indice]);
+    xhr.onerror = function () {
+        console.log('ERRO', xhr.readyState);
+    }
+
+    xhr.onreadystatechange = function () {
+        if (this.readyState == 4) {
+            if (this.status == 200) {
+                var estudantes = JSON.parse(this.responseText);
+                for (var indice in estudantes) {
+                    adicionaLinha(estudantes[indice]);
+                }
+            }
+            else if (this.status == 500) {
+                var erro = JSON.parse(this.responseText);
+                console.log(erro.Message)
+                console.log(erro.ExceptionMessage);
+            }
         }
     }
     xhr.send();
+
 }
 
 function salvarEstudantes(metodo, id, corpo) {
@@ -126,7 +140,7 @@ function deletar(estudante) {
             }
         },
         callback: function (result) {
-            if(result) {
+            if (result) {
                 deletarEstudantes(estudante.id);
                 carregaEstudantes();
             }

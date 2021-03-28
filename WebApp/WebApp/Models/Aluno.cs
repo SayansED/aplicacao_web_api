@@ -15,32 +15,11 @@ namespace WebApp.Models
         public string nome { get; set; }
         public string sobrenome { get; set; }
         public string telefone { get; set; }
+        public string data { get; set; }
         public int ra { get; set; }
 
         public List<Aluno> ListarAlunos()
         {
-            /*
-            Alunos aluno1 = new Alunos();
-            aluno1.id = 1;
-            aluno1.nome = "Eduardo";
-            aluno1.sobrenome = "Sayans";
-            aluno1.telefone = "1234";
-            aluno1.ra = 1111;
-
-            Alunos aluno2 = new Alunos();
-            aluno2.id = 2;
-            aluno2.nome = "Maria";
-            aluno2.sobrenome = "Jesus";
-            aluno2.telefone = "1234";
-            aluno2.ra = 1111;
-
-
-            List<Alunos> listaAlunos = new List<Alunos>();
-
-            listaAlunos.Add(aluno1);
-            listaAlunos.Add(aluno2);
-            */
-
             var caminhoArquivo = HostingEnvironment.MapPath(@"~/App_Data/Base.json");
             var json = File.ReadAllText(caminhoArquivo);
             var listaAlunos = JsonConvert.DeserializeObject<List<Aluno>>(json);
