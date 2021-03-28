@@ -4,7 +4,7 @@
     "nome": "Edson",
     "sobrenome": "Oliveira",
     "telefone": "88778999",
-    "data":  "2021-03",
+    "data": "2021-03",
     "ra": 3
   },
   {
@@ -30,5 +30,13 @@
     "telefone": "1234",
     "data": "2021-03",
     "ra": 1108
+  },
+  {
+    "id": 0,
+    "nome": "eduardo",
+    "sobrenome": "sa",
+    "telefone": "789",
+    "data": null,
+    "ra": 456
   }
 ]

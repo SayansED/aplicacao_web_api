@@ -1,6 +1,9 @@
 ﻿using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
+using System.Data;
+using System.Data.SqlClient;
 using System.IO;
 using System.Linq;
 using System.Web;
@@ -20,11 +23,15 @@ namespace WebApp.Models
 
         public List<Aluno> ListarAlunos()
         {
-            var caminhoArquivo = HostingEnvironment.MapPath(@"~/App_Data/Base.json");
-            var json = File.ReadAllText(caminhoArquivo);
-            var listaAlunos = JsonConvert.DeserializeObject<List<Aluno>>(json);
-
-            return listaAlunos;
+            try
+            {
+                var alunoDB = new AlunoDAO();
+                return alunoDB.ListarAlunosDB();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Erro ao listar Alunos: Erro => {ex.Message}");
+            }
         }
 
         public bool RescreverArquivo(List<Aluno> listaAlunos)
@@ -35,15 +42,26 @@ namespace WebApp.Models
             return true;
         }
 
-        public Aluno Inserir(Aluno Aluno)
+        public void Inserir(Aluno aluno)
         {
+            /*
             var listaAlunos = this.ListarAlunos();
             var maxId = listaAlunos.Max(aluno => aluno.id);
             listaAlunos.Add(Aluno);
 
             RescreverArquivo(listaAlunos);
             return Aluno;
+            */
 
+            try
+            {
+                var alunoDB = new AlunoDAO();
+                alunoDB.InserirAlunoDB(aluno);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Erro ao inserir Aluno: Erro => {ex.Message}");
+            }
         }
 
         public Aluno Atualizar(int id, Aluno Aluno)
