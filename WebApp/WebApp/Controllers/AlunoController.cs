@@ -16,7 +16,7 @@ namespace WebApp.Controllers
         // GET: api/Aluno
         [HttpGet]
         [Route("Recuperar")]
-        public IHttpActionResult Get()
+        public IHttpActionResult Recuperar()
         {
             try
             {
@@ -36,7 +36,7 @@ namespace WebApp.Controllers
         public Aluno Get(int id)
         {
             Aluno aluno = new Aluno();
-            return aluno.ListarAlunos().Where(x => x.id == id).FirstOrDefault();
+            return aluno.ListarAlunos(id).FirstOrDefault();
         }
 
         // GET: api/Aluno/5
@@ -61,30 +61,53 @@ namespace WebApp.Controllers
         }
 
         // POST: api/Aluno
-        public List<Aluno> Post(Aluno aluno)
+        [HttpPost]
+        public IHttpActionResult Post(Aluno aluno)
         {
-            /*
-            List<Aluno> alunos = new List<Aluno>();
-            alunos.Add(aluno);
-            return alunos;
-            */
-            Aluno _aluno = new Aluno();
-            _aluno.Inserir(aluno);
-            return _aluno.ListarAlunos();
+            try
+            {
+                Aluno _aluno = new Aluno();
+                _aluno.Inserir(aluno);
+                return Ok(_aluno.ListarAlunos());
+            }
+            catch (Exception ex)
+            {
+                return InternalServerError(ex);
+            }
+            
         }
 
         // PUT: api/Aluno/5
-        public Aluno Put(int id, [FromBody] Aluno aluno)
+        [HttpPut]
+        public IHttpActionResult Put(int id, [FromBody] Aluno aluno)
         {
-            Aluno _aluno = new Aluno();
-            return _aluno.Atualizar(id, aluno);
+            try
+            {
+                Aluno _aluno = new Aluno();
+                aluno.id = id;
+                _aluno.Atualizar(aluno);
+                return Ok(_aluno.ListarAlunos(id).FirstOrDefault());
+            }
+            catch(Exception ex)
+            {
+                return InternalServerError(ex);
+            }
         }
 
-        // DELETE: api/Aluno/5
-        public void Delete(int id)
+        // DELETE: api/aluno/5
+        [HttpDelete]
+        public IHttpActionResult Delete(int id)
         {
-            Aluno _aluno = new Aluno();
-            _aluno.Deletar(id);
+            try
+            {
+                Aluno _aluno = new Aluno();
+                _aluno.Deletar(id);
+                return Ok("Deletado com sucesso")
+            }
+            catch(Exception ex)
+            {
+                return InternalServerError(ex);
+            }      
         }
     }
 }

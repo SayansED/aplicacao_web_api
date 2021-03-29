@@ -20,47 +20,126 @@ namespace WebApp.Models
             conexao.Open();
         }
 
-        public List<Aluno> ListarAlunosDB()
+        public List<Aluno> ListarAlunosDB(int? id = null)
         {
             var listaAlunos = new List<Aluno>();
-
-            IDbCommand selectCmd = conexao.CreateCommand();
-            selectCmd.CommandText = "select * from Alunos";
-
-            IDataReader resultado = selectCmd.ExecuteReader();
-            while (resultado.Read())
-            {
-                var al = new Aluno();
-                al.id = Convert.ToInt32(resultado["Id"]);
-                al.nome = Convert.ToString(resultado["nome"]);
-                al.sobrenome = Convert.ToString(resultado["sobrenome"]);
-                al.telefone = Convert.ToString(resultado["telefone"]);
-                al.ra = Convert.ToInt32(resultado["ra"]);
-
-                listaAlunos.Add(al);
+            try
+            {                
+                IDbCommand selectCmd = conexao.CreateCommand();
+                if (id == null)
+                {
+                    selectCmd.CommandText = "select * from Alunos";
+                }
+                else
+                {
+                    selectCmd.CommandText = $"select * from Alunos where id = {id}";
+                }
+                IDataReader resultado = selectCmd.ExecuteReader();
+                while (resultado.Read())
+                {
+                    var al = new Aluno // injeta diretamente
+                    {
+                        id = Convert.ToInt32(resultado["Id"]),
+                        nome = Convert.ToString(resultado["nome"]),
+                        sobrenome = Convert.ToString(resultado["sobrenome"]),
+                        telefone = Convert.ToString(resultado["telefone"]),
+                        ra = Convert.ToInt32(resultado["ra"]),
+                };                  
+                    listaAlunos.Add(al);
+                }
+                return listaAlunos;
             }
-            conexao.Close();
-            return listaAlunos;
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+            finally
+            {
+                conexao.Close();
+            }            
         }
 
         public void InserirAlunoDB(Aluno aluno)
         {
-            IDbCommand insertCmd = conexao.CreateCommand();
-            insertCmd.CommandText = "insert into Aluno (nome, sobrenome, telefone, ra) values (@nome, @sobrenome, @telefone, @ra)";
+            try
+            {
+                IDbCommand insertCmd = conexao.CreateCommand();
+                insertCmd.CommandText = "insert into Alunos (nome, sobrenome, telefone, ra) values (@nome, @sobrenome, @telefone, @ra)";
 
-            IDbDataParameter paramNome = new SqlParameter("nome", aluno.nome);
-            insertCmd.Parameters.Add(paramNome);
+                IDbDataParameter paramNome = new SqlParameter("nome", aluno.nome);                
+                IDbDataParameter paramSobrenome = new SqlParameter("sobrenome", aluno.sobrenome);                
+                IDbDataParameter paramTelefone = new SqlParameter("telefone", aluno.telefone);                
+                IDbDataParameter paramRa = new SqlParameter("ra", aluno.ra);
 
-            IDbDataParameter paramSobrenome = new SqlParameter("sobrenome", aluno.sobrenome);
-            insertCmd.Parameters.Add(paramSobrenome);
+                insertCmd.Parameters.Add(paramNome);
+                insertCmd.Parameters.Add(paramSobrenome);
+                insertCmd.Parameters.Add(paramTelefone);
+                insertCmd.Parameters.Add(paramRa);
 
-            IDbDataParameter paramTelefone = new SqlParameter("telefone", aluno.telefone);
-            insertCmd.Parameters.Add(paramTelefone);
+                insertCmd.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+            finally
+            {
+                conexao.Close();
+            }         
+        }
 
-            IDbDataParameter paramRa = new SqlParameter("ra", aluno.ra);
-            insertCmd.Parameters.Add(paramRa);
+        public void AtualizarAlunoDB(Aluno aluno)
+        {
+            try
+            {
+                IDbCommand updateCmd = conexao.CreateCommand();
+                updateCmd.CommandText = "update Alunos set nome = @nome, sobrenome = @sobrenome, telefone = @telefone, ra = @ra where id = @id";
 
-            insertCmd.ExecuteNonQuery();
+                IDbDataParameter paramNome = new SqlParameter("nome", aluno.nome);
+                IDbDataParameter paramSobrenome = new SqlParameter("sobrenome", aluno.sobrenome);
+                IDbDataParameter paramTelefone = new SqlParameter("telefone", aluno.telefone);
+                IDbDataParameter paramRa = new SqlParameter("ra", aluno.ra);
+
+                updateCmd.Parameters.Add(paramNome);
+                updateCmd.Parameters.Add(paramSobrenome);
+                updateCmd.Parameters.Add(paramTelefone);
+                updateCmd.Parameters.Add(paramRa);
+
+                IDbDataParameter paramID = new SqlParameter("id", aluno.id);
+                updateCmd.Parameters.Add(paramID);
+
+                updateCmd.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+            finally
+            {
+                conexao.Close();
+            }            
+        }
+
+        public void DeletarAlunoDB(int id)
+        {
+            try
+            {
+                IDbCommand deleteCmd = conexao.CreateCommand();
+                deleteCmd.CommandText = "delete from Alunos where id = @id";
+
+                IDbDataParameter paramID = new SqlParameter("id", id);
+                deleteCmd.Parameters.Add(paramID);
+
+                deleteCmd.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+            finally
+            {
+                conexao.Close();
+            }           
         }
     }
 }

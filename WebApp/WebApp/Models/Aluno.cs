@@ -21,12 +21,12 @@ namespace WebApp.Models
         public string data { get; set; }
         public int ra { get; set; }
 
-        public List<Aluno> ListarAlunos()
+        public List<Aluno> ListarAlunos(int? id = null)
         {
             try
             {
                 var alunoDB = new AlunoDAO();
-                return alunoDB.ListarAlunosDB();
+                return alunoDB.ListarAlunosDB(id);
             }
             catch (Exception ex)
             {
@@ -44,15 +44,6 @@ namespace WebApp.Models
 
         public void Inserir(Aluno aluno)
         {
-            /*
-            var listaAlunos = this.ListarAlunos();
-            var maxId = listaAlunos.Max(aluno => aluno.id);
-            listaAlunos.Add(Aluno);
-
-            RescreverArquivo(listaAlunos);
-            return Aluno;
-            */
-
             try
             {
                 var alunoDB = new AlunoDAO();
@@ -61,6 +52,18 @@ namespace WebApp.Models
             catch (Exception ex)
             {
                 throw new Exception($"Erro ao inserir Aluno: Erro => {ex.Message}");
+            }
+        }
+        public void Atualizar(Aluno aluno)
+        {
+            try
+            {
+                var alunoDB = new AlunoDAO();
+                alunoDB.AtualizarAlunoDB(aluno);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Erro ao atualizar Aluno: Erro => {ex.Message}");
             }
         }
 
@@ -83,21 +86,17 @@ namespace WebApp.Models
             return Aluno;
         }
 
-        public bool Deletar(int id)
+        public void Deletar(int id)
         {
-            var listaAlunos = this.ListarAlunos();
-            var itemIdex = listaAlunos.FindIndex(p => p.id == id);
-
-            if (itemIdex >= 0)
+            try
             {
-                listaAlunos.RemoveAt(itemIdex);
+                var alunoDB = new AlunoDAO();
+                alunoDB.DeletarAlunoDB(id);
             }
-            else
+            catch (Exception ex)
             {
-                return false;
+                throw new Exception($"Erro ao deletar Aluno: Erro => {ex.Message}");
             }
-            RescreverArquivo(listaAlunos);
-            return true;
         }
     }
 }
