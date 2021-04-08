@@ -32,8 +32,8 @@ namespace WebApp.Controllers
 
         // GET: api/Aluno/5
         [HttpGet]
-        [Route("Recuperar/{id:int}")]
-        public Aluno Get(int id)
+        [Route("RecuperarPorId/{id:int}")]
+        public Aluno RecuperarPorId(int id)
         {
             Aluno aluno = new Aluno();
             return aluno.ListarAlunos(id).FirstOrDefault();
@@ -42,7 +42,7 @@ namespace WebApp.Controllers
         // GET: api/Aluno/5
         [HttpGet]
         [Route(@"RecuperarPorDataNome/{data:regex([0-9]{4}\-[0-9]{2})}/{nome:minlength(5)}")]
-        public IHttpActionResult Recuperar(string data, string nome)
+        public IHttpActionResult RecuperarPorDataNome(string data, string nome)
         {
             try
             {
@@ -102,7 +102,7 @@ namespace WebApp.Controllers
             {
                 Aluno _aluno = new Aluno();
                 _aluno.Deletar(id);
-                return Ok("Deletado com sucesso")
+                return Ok("Deletado com sucesso");
             }
             catch(Exception ex)
             {

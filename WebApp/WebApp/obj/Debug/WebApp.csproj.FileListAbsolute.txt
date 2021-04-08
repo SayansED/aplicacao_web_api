@@ -71,3 +71,7 @@ C:\Users\Eduardo\Desktop\Projeto\Udemy\WebApp\WebApp\obj\Debug\WebApp.pdb
 C:\Users\Eduardo\Desktop\Projeto\Udemy\WebApp\WebApp\bin\System.Web.Cors.dll
 C:\Users\Eduardo\Desktop\Projeto\Udemy\WebApp\WebApp\bin\System.Web.Http.Cors.dll
 C:\Users\Eduardo\Desktop\Projeto\Udemy\WebApp\WebApp\bin\System.Web.Http.Cors.xml
+C:\Users\Eduardo\Desktop\Projeto\Udemy\WebApp\WebApp\bin\WebApp.xml
+C:\Users\Eduardo\Desktop\Projeto\Udemy\WebApp\WebApp\bin\Microsoft.Web.Infrastructure.dll
+C:\Users\Eduardo\Desktop\Projeto\Udemy\WebApp\WebApp\bin\Swashbuckle.Core.dll
+C:\Users\Eduardo\Desktop\Projeto\Udemy\WebApp\WebApp\bin\WebActivatorEx.dll

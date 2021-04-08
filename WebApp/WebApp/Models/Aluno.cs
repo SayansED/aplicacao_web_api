@@ -13,7 +13,6 @@ namespace WebApp.Models
 {
     public class Aluno
     {
-
         public int id { get; set; }
         public string nome { get; set; }
         public string sobrenome { get; set; }
@@ -54,6 +53,7 @@ namespace WebApp.Models
                 throw new Exception($"Erro ao inserir Aluno: Erro => {ex.Message}");
             }
         }
+
         public void Atualizar(Aluno aluno)
         {
             try
