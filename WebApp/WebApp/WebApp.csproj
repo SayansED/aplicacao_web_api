@@ -110,8 +110,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\Aluno.cs" />
+    <Compile Include="Models\AlunoModel.cs" />
     <Compile Include="Models\AlunoDAO.cs" />
+    <Compile Include="Models\AlunoDTO.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

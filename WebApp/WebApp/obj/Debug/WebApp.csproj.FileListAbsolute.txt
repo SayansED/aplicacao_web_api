@@ -63,7 +63,6 @@ C:\Users\Eduardo\Desktop\Projeto\Udemy\WebApp\WebApp\bin\Microsoft.CodeDom.Provi
 C:\Users\Eduardo\Desktop\Projeto\Udemy\WebApp\WebApp\bin\pt-br\System.Net.Http.Formatting.resources.dll
 C:\Users\Eduardo\Desktop\Projeto\Udemy\WebApp\WebApp\bin\pt-br\System.Web.Http.resources.dll
 C:\Users\Eduardo\Desktop\Projeto\Udemy\WebApp\WebApp\bin\pt-br\System.Web.Http.WebHost.resources.dll
-C:\Users\Eduardo\Desktop\Projeto\Udemy\WebApp\WebApp\obj\Debug\WebApp.csprojAssemblyReference.cache
 C:\Users\Eduardo\Desktop\Projeto\Udemy\WebApp\WebApp\obj\Debug\WebApp.csproj.CoreCompileInputs.cache
 C:\Users\Eduardo\Desktop\Projeto\Udemy\WebApp\WebApp\obj\Debug\WebApp.csproj.CopyComplete
 C:\Users\Eduardo\Desktop\Projeto\Udemy\WebApp\WebApp\obj\Debug\WebApp.dll
