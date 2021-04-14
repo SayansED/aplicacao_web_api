@@ -75,3 +75,7 @@ C:\Users\Eduardo\Desktop\Projeto\Udemy\WebApp\WebApp\bin\Microsoft.Web.Infrastru
 C:\Users\Eduardo\Desktop\Projeto\Udemy\WebApp\WebApp\bin\Swashbuckle.Core.dll
 C:\Users\Eduardo\Desktop\Projeto\Udemy\WebApp\WebApp\bin\WebActivatorEx.dll
 C:\Users\Eduardo\Desktop\Projeto\Udemy\WebApp\WebApp\obj\Debug\WebApp.csprojAssemblyReference.cache
+C:\Users\Eduardo\Desktop\Projeto\Udemy\WebApp\WebApp\bin\App.Domain.dll
+C:\Users\Eduardo\Desktop\Projeto\Udemy\WebApp\WebApp\bin\App.Repository.dll
+C:\Users\Eduardo\Desktop\Projeto\Udemy\WebApp\WebApp\bin\App.Domain.pdb
+C:\Users\Eduardo\Desktop\Projeto\Udemy\WebApp\WebApp\bin\App.Repository.pdb

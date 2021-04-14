@@ -1,0 +1,6 @@
+C:\Users\Eduardo\Desktop\Projeto\Udemy\WebApp\App.Domain\bin\Debug\App.Domain.dll
+C:\Users\Eduardo\Desktop\Projeto\Udemy\WebApp\App.Domain\bin\Debug\App.Domain.pdb
+C:\Users\Eduardo\Desktop\Projeto\Udemy\WebApp\App.Domain\obj\Debug\App.Domain.csprojAssemblyReference.cache
+C:\Users\Eduardo\Desktop\Projeto\Udemy\WebApp\App.Domain\obj\Debug\App.Domain.csproj.CoreCompileInputs.cache
+C:\Users\Eduardo\Desktop\Projeto\Udemy\WebApp\App.Domain\obj\Debug\App.Domain.dll
+C:\Users\Eduardo\Desktop\Projeto\Udemy\WebApp\App.Domain\obj\Debug\App.Domain.pdb
