@@ -74,3 +74,4 @@ C:\Users\Eduardo\Desktop\Projeto\Udemy\WebApp\WebApp\bin\WebApp.xml
 C:\Users\Eduardo\Desktop\Projeto\Udemy\WebApp\WebApp\bin\Microsoft.Web.Infrastructure.dll
 C:\Users\Eduardo\Desktop\Projeto\Udemy\WebApp\WebApp\bin\Swashbuckle.Core.dll
 C:\Users\Eduardo\Desktop\Projeto\Udemy\WebApp\WebApp\bin\WebActivatorEx.dll
+C:\Users\Eduardo\Desktop\Projeto\Udemy\WebApp\WebApp\obj\Debug\WebApp.csprojAssemblyReference.cache
