@@ -59,3 +59,10 @@ Demonstração do site recebendo os dados inseridos no form.
 </br>Demonstração abaixo o resultado:
 
 ![site](https://github.com/SayansED/aplicacao_web_api/blob/master/Site/Imagens/Site/indexCadastrar.png)
+
+
+<p align="right">
+  <a href="https://badges.pufler.dev">
+      <img src="https://badges.pufler.dev/visits/sayansed/sayansed" alt="Visitors badge" />
+   </a>
+</p>
