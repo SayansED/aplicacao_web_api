@@ -37,6 +37,22 @@ Demostrar de forma simples o funcionamento de APIs com .NET Framework.
 
 
 ## Site 
+Page Index
+* Recebendo dados do banco de dados
+
+</br>Demonstração abaixo o resultado:
+
+![site](https://github.com/SayansED/aplicacao_web_api/blob/master/Site/Imagens/Site/Index.png)
+
+
+Banco de dados MySql
+* Visualização no Visual Studio
+
+</br>Demonstração abaixo o resultado:
+
+![site](https://github.com/SayansED/aplicacao_web_api/blob/master/Site/Imagens/AppWebApi/BDSite.png)
+
+
 Demonstração do site recebendo os dados inseridos no form.
 * Utilizado JavaScript para receber dados e mandar para APIs
 
