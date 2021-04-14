@@ -60,7 +60,7 @@ function carregaEstudantes() {
     tbody.innerHTML = '';
     var xhr = new XMLHttpRequest();
 
-    xhr.open(`GET`, `https://localhost:44312/api/aluno`, true);
+    xhr.open(`GET`, `https://localhost:44312/api/Aluno/Recuperar`, true);
 
     xhr.onerror = function () {
         console.log('ERRO', xhr.readyState);
