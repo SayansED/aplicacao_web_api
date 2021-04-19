@@ -61,6 +61,7 @@ function carregaEstudantes() {
     var xhr = new XMLHttpRequest();
 
     xhr.open(`GET`, `https://localhost:44312/api/Aluno/Recuperar`, true);
+    xhr.setRequestHeader('Authorization', sessionStorage.getItem('token'));
 
     xhr.onerror = function () {
         console.log('ERRO', xhr.readyState);

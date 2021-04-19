@@ -15,6 +15,7 @@ namespace WebApp.Controllers
         // GET: api/Aluno
         [HttpGet]
         [Route("Recuperar")]
+        [Authorize(Roles = Funcao.Administrador)]
         public IHttpActionResult Recuperar()
         {
             try

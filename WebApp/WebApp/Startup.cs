@@ -1,10 +1,10 @@
 ﻿using Microsoft.Owin;
 using Microsoft.Owin.Cors;
+using Microsoft.Owin.Security.OAuth;
 using Newtonsoft.Json.Serialization;
 using Owin;
 using Swashbuckle.Application;
 using System;
-using System.Threading.Tasks;
 using System.Web.Http;
 
 [assembly: OwinStartup(typeof(WebApp.Startup))]
@@ -35,7 +35,25 @@ namespace WebApp
             });
 
             app.UseCors(CorsOptions.AllowAll);
+
+            AtivandoAcessTokens(app);
+
             app.UseWebApi(config);
+        }
+
+        // criando configurações
+        private void AtivandoAcessTokens(IAppBuilder app)
+        {
+            var opcoesConfiguracaoToken = new OAuthAuthorizationServerOptions() 
+            {
+                AllowInsecureHttp = true,
+                TokenEndpointPath = new PathString("/token"),
+                AccessTokenExpireTimeSpan = TimeSpan.FromHours(1),
+                Provider = new ProviderDeTokenDeAcesso()
+            };
+
+            app.UseOAuthAuthorizationServer(opcoesConfiguracaoToken);
+            app.UseOAuthBearerAuthentication(new OAuthBearerAuthenticationOptions());
         }
     }
 }
