@@ -79,3 +79,14 @@ C:\Users\Eduardo\Desktop\Projeto\Udemy\WebApp\WebApp\bin\App.Domain.dll
 C:\Users\Eduardo\Desktop\Projeto\Udemy\WebApp\WebApp\bin\App.Repository.dll
 C:\Users\Eduardo\Desktop\Projeto\Udemy\WebApp\WebApp\bin\App.Domain.pdb
 C:\Users\Eduardo\Desktop\Projeto\Udemy\WebApp\WebApp\bin\App.Repository.pdb
+C:\Users\Eduardo\Desktop\Projeto\Udemy\WebApp\WebApp\bin\Microsoft.Owin.dll
+C:\Users\Eduardo\Desktop\Projeto\Udemy\WebApp\WebApp\bin\Microsoft.Owin.Host.SystemWeb.dll
+C:\Users\Eduardo\Desktop\Projeto\Udemy\WebApp\WebApp\bin\Microsoft.Owin.Security.dll
+C:\Users\Eduardo\Desktop\Projeto\Udemy\WebApp\WebApp\bin\Owin.dll
+C:\Users\Eduardo\Desktop\Projeto\Udemy\WebApp\WebApp\bin\System.Web.Http.Owin.dll
+C:\Users\Eduardo\Desktop\Projeto\Udemy\WebApp\WebApp\bin\Microsoft.Owin.xml
+C:\Users\Eduardo\Desktop\Projeto\Udemy\WebApp\WebApp\bin\Microsoft.Owin.Host.SystemWeb.xml
+C:\Users\Eduardo\Desktop\Projeto\Udemy\WebApp\WebApp\bin\Microsoft.Owin.Security.xml
+C:\Users\Eduardo\Desktop\Projeto\Udemy\WebApp\WebApp\bin\System.Web.Http.Owin.xml
+C:\Users\Eduardo\Desktop\Projeto\Udemy\WebApp\WebApp\bin\Microsoft.Owin.Cors.dll
+C:\Users\Eduardo\Desktop\Projeto\Udemy\WebApp\WebApp\bin\Microsoft.Owin.Cors.xml
