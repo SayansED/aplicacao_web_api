@@ -1,4 +1,7 @@
-﻿using Microsoft.Owin.Security.OAuth;
+﻿using Microsoft.Owin.Security;
+using Microsoft.Owin.Security.OAuth;
+using Newtonsoft.Json;
+using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
@@ -23,15 +26,47 @@ namespace WebApp
             {
                 context.SetError("invalid_grant", "Usuário não encontrado ou senha incorreta");
                 return;
-            }      
-            var identidadeUsuario = new ClaimsIdentity(context.Options.AuthenticationType);
+            }
+
+            // Todas propriedades
+            var props = new AuthenticationProperties(new Dictionary<string, string>
+            {
+                {
+                    "Username", context.UserName
+                }
+            });
+
+            var identity = new ClaimsIdentity(context.Options.AuthenticationType);
+            var identidadeUsuario = new AuthenticationTicket(identity, props);
 
             foreach (var funcao in usuario.Funcoes)
             {
-                identidadeUsuario.AddClaim(new Claim(ClaimTypes.Role, funcao));
+                identidadeUsuario.Identity.AddClaim(new Claim(ClaimTypes.Role, funcao));
             }
 
             context.Validated(identidadeUsuario);          
+        }
+
+        public override Task TokenEndpoint(OAuthTokenEndpointContext context)
+        {
+            // Pegando todas claims
+            foreach (var item in context.Properties.Dictionary)
+            {
+                context.AdditionalResponseParameters.Add(item.Key, item.Value);
+            }
+
+            // Populando claims
+            var claims = context.Identity.Claims
+                .GroupBy(x => x.Type)
+                .Select(y => new { Claim = y.Key, Value = y.Select(z => z.Value).ToArray() });
+
+            // Passo como resposta adcional
+            foreach (var item in claims)
+            {
+                context.AdditionalResponseParameters.Add(item.Claim, JsonConvert.SerializeObject(item.Value));
+            }
+
+            return base.TokenEndpoint(context);
         }
     }
 }

@@ -49,10 +49,13 @@
 
             xhr.onload = function () {
                 var resultado = JSON.parse(this.responseText);
+                
                 console.log(resultado);
                 console.log(`${resultado.token_type} ${resultado.access_token}`);
+
                 if(resultado.error != 'invalid_grant'){
                     sessionStorage.setItem('token', `${resultado.token_type} ${resultado.access_token}`);
+                    sessionStorage.setItem('username', `${resultado.Username}`);
                     verificar();
                 }
                 else {
@@ -60,6 +63,7 @@
                     nome.value = '';
                     password.value = '';
                 }
+                
             }
 
             //xhr.setRequestHeader('content-type', 'application/x-www-form-urlencoded');
